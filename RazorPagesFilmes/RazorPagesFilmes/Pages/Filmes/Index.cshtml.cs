@@ -1,11 +1,7 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
+using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
-using RazorPagesFilmes.Data;
 using RazorPagesFilmes.Model;
 
 namespace RazorPagesFilmes.Pages.Filmes
@@ -19,11 +15,25 @@ namespace RazorPagesFilmes.Pages.Filmes
             _context = context;
         }
 
+        [BindProperty(SupportsGet = true)]
+        public string PalavraChave { get; set; }
+        
+        [BindProperty(SupportsGet = true)]
+        public string GeneroFilme { get; set; }
+        
+        public SelectList Generos { get; set; }
+
         public IList<Filme> Filme { get;set; } = default!;
 
         public async Task OnGetAsync()
         {
-            Filme = await _context.Filme.ToListAsync();
+            var filmes = from f in _context.Filme
+                         select f;
+
+            if(!string.IsNullOrWhiteSpace(PalavraChave))
+                filmes = filmes.Where(x => x.Titulo.Contains(PalavraChave));
+
+            Filme = await filmes.ToListAsync();
         }
     }
 }
