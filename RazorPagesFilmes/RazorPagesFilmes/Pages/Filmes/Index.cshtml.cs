@@ -33,6 +33,11 @@ namespace RazorPagesFilmes.Pages.Filmes
             if(!string.IsNullOrWhiteSpace(PalavraChave))
                 filmes = filmes.Where(x => x.Titulo.Contains(PalavraChave));
 
+            if(!string.IsNullOrEmpty(GeneroFilme))
+                filmes = filmes.Where(x => x.Genero == GeneroFilme);
+
+            Generos = new SelectList(await _context.Filme.Select(x => x.Genero).Distinct().ToListAsync());
+
             Filme = await filmes.ToListAsync();
         }
     }
