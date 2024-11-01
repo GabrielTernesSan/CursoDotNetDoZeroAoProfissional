@@ -37,6 +37,9 @@
             <th>
                 @Html.DisplayNameFor(model => model.Filme[0].Preco)
             </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Filme[0].Classificacao)
+            </th>
             <th></th>
         </tr>
     </thead>
@@ -55,6 +58,9 @@
                 </td>
                 <td>
                     @Html.DisplayFor(modelItem => item.Preco)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Classificacao)
                 </td>
                 <td>
                     <a asp-page="./Edit" asp-route-id="@item.Id">Editar</a> |
