@@ -6,6 +6,7 @@ namespace RazorPagesFilmes.Model
     {
         public int Id { get; set; }
         public string Titulo { get; set; } = string.Empty;
+        [Display(Name = "Data de Lançamento")]
         [DataType(DataType.Date)]
         public DateTimeOffset DataLancamento { get; set; }
         public string Genero { get; set; } = string.Empty;
