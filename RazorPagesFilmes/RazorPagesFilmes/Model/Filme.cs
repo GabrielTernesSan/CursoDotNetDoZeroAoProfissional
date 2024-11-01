@@ -11,5 +11,6 @@ namespace RazorPagesFilmes.Model
         public DateTimeOffset DataLancamento { get; set; }
         public string Genero { get; set; } = string.Empty;
         public decimal Preco { get; set; }
+        public int Classificacao { get; set; }
     }
 }
